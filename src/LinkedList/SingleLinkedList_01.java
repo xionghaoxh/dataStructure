@@ -25,6 +25,8 @@ public class SingleLinkedList_01 {
         System.out.println("===================");
         list.delete(node3);
         list.show();
+        System.out.println(list.getCount());
+        System.out.println(list.getHeroNode(1));
     }
 }
     //创建单链表类
@@ -137,6 +139,49 @@ public class SingleLinkedList_01 {
             System.out.println(tmp);
         }
     }
+
+        /**
+         * 求出头节点所在的单链表的节点个数
+         * @return int
+         */
+
+         public int getCount() {
+            HeroNode tmp =head;
+            int count=0;
+            while (true){
+                if(tmp.next==null){
+                    break;
+                }
+                count++;
+                tmp=tmp.next;
+            }
+
+            return count;
+         }
+
+        /**
+         *求链表中的倒数第k个节点
+         * @return
+         */
+         public HeroNode getHeroNode(int k){//分析， 我们必须得到总的个数 size ;就是我们上面方法得到的值
+             HeroNode temp = head;
+             int size=getCount();
+             if(temp.next==null){
+                 System.out.println("空链表");
+             }
+             if(size-k<0){
+              throw new RuntimeException("k之前没有节点");
+             }
+             int count=0;//记录循环的时候到哪个位置了
+             while(true){
+                 temp=temp.next;
+                 count++;
+                 if(count==(size-k)+1){
+                     break;
+                 }
+             }
+             return temp;
+         }
 
     }
 
